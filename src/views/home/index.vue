@@ -115,6 +115,14 @@ import { ElMessage } from 'element-plus';
 
 
 const router = useRouter()
+
+const urla = ref("")
+watch(()=> urla.value,(newVal,oldVal)=>{
+    if(newVal.indexOf("board") != -1){
+        router.push("/monitor/board")
+    }
+})
+
 const menuList = ref([])
 
 const serveCount = ref(0);
@@ -200,6 +208,7 @@ const goUrl = (authName, authName2, url) => {
     store.commit("openNames", authName);
     store.commit("activeName", authName2);
     sessionStorage.setItem(`url`,`${url}`)
+    urla.value = url
     activePath.value = sessionStorage.getItem(`url`)   
 }
 
